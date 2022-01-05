@@ -1,14 +1,14 @@
-const input = require("fs")
-  .readFileSync("/dev/stdin")
-  .toString()
-  .trim()
-  .split("\n");
 
-const [yMax, xMax] = input.shift().split(" ");
+const [yMax, xMax] = [4, 6];
 
-const map = input.map((v) => v.split("").map((x) => +x));
+const map = [
+  [1, 0, 1, 1, 1, 1],
+  [1, 0, 1, 0, 1, 0],
+  [1, 0, 1, 0, 1, 1],
+  [1, 1, 1, 0, 1, 1],
+];
 
-const stack = [[0, 0, 0]];
+const stack = [[0, 0, 1]];
 
 const dir = [
   [0, 1],
@@ -16,6 +16,7 @@ const dir = [
   [1, 0],
   [-1, 0],
 ];
+
 
 while (stack.length) {
   const [x, y, dis] = stack.shift();
@@ -26,7 +27,7 @@ while (stack.length) {
 
     if (0 <= xPos && 0 <= yPos && xPos < xMax && yPos < yMax) {
       if (map[yPos][xPos] === 1) {
-        map[yPos][xPos] = dis + 2;
+        map[yPos][xPos] = dis + 1;
         stack.push([xPos, yPos, dis + 1]);
       }
     }
