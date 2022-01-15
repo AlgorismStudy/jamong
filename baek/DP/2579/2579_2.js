@@ -15,10 +15,11 @@ else {
   const dp = [];
   dp[0] = stair[0];
   dp[1] = stair[0] + stair[1];
-  dp[2] = Math.max(stair[1],dp[0] + stair[2]);
+  dp[2] = Math.max(stair[1] + stair[2], dp[0] + stair[2]);
+
   //현재 기준 3칸 밑에서 올라오는 것과, 2칸 밑에서 올라오는것 기준으로 큰값이 현재 값
   for (i = 3; i < N; i++) {
     dp[i] = Math.max(dp[i - 3] + stair[i - 1] + stair[i], dp[i - 2] + stair[i]);
   }
-  console.log(dp[N-1]);
+  console.log(dp[N - 1]);
 }
