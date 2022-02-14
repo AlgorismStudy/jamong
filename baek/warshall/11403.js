@@ -19,7 +19,6 @@ function FW(dist) {
   }
 }
 
-
 const fs = require("fs");
 const graph = fs
   .readFileSync("input/11403.txt")
