@@ -23,7 +23,7 @@ function solution(tickets) {
     if (restart !== "no") {
       //시작위치로서 존재한다면
 
-      solution(tickets, restart);
+      bfs(tickets, restart);
     } else {
       //존재하지 않는다면
       stack.push(location[0][1]);
