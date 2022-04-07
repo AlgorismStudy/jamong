@@ -9,7 +9,8 @@ function solution(bridge_length, weight, truck_weights) {
       queue[0] +
         bridge.reduce((accumulator, current) => accumulator + current, 0) >
         weight
-    ) {
+    ) { 
+        
       bridge.push(0);
     } else {
       if (queue.length) bridge.push(queue.shift());
