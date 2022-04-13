@@ -1,29 +1,30 @@
 function solution(begin, target, words) {
-  let answer = 0;
-  if (!words.includes(target)) return 0;
-  return solution2(begin, target, words, answer);
-}
+  var answer = Infinity;
+  const visited = {};
+  f(begin, 0);
+  function f(curr, cnt) {
+    if (curr === target) {
+      answer = Math.min(cnt, answer);
+      return;
+    }
 
-function solution2(begin, target, words, answer) {
-  if (begin == target) return answer;
-
-  if (!words.includes(target)) return 0;
-
-  for (i = 0; i < words.length; i++) {
-    let count = 0;
-    for (j = 0; j < words[i].length; j++) {
-      if (words[i][j] !== begin[j]) {
-        count += 1;
+    words.map((word, i) => {
+      let j = word.length - 1;
+      let diff = 0;
+      while (j !== -1) {
+        if (curr[j] !== word[j]) diff++;
+        j--;
       }
-    }
-    if (count == 1) {
-      const next = words.splice(i, 1);
-      return solution(next[0], target, words, answer + 1);
-    }
-    count = 0;
+      console.log(word,visited,visited[word])
+      if (diff === 1 && !visited[word]) {
+        visited[word] = 1;
+        f(word, cnt + 1);
+        visited[word] = 0;
+      }
+    });
   }
-  return 0;
+  return answer === Infinity ? 0 : answer;
 }
 
-console.log(solution("hit", "cog", ["hot", "dot", "dog", "cog"]));
-console.log(solution("hit", "cog", ["hot", "dot", "dog", "lot", "log"]));
+
+console.log(solution("hit", "cog", ["hot", "dot", "dog", "lot", "log", "cog"]));

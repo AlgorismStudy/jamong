@@ -63,14 +63,14 @@ console.log(
   solution("this is {template} {template} is {state}", [
     ["template", "string"],
     ["state", "{template}"],
-  ]) == "this is string string is string"
+  ]) === "this is string string is string"
 );
 
 console.log(
   solution("this is {template} {template} is {state}", [
     ["template", "{state}"],
     ["state", "{templates}"],
-  ]) == "this is {templates} {templates} is {templates}"
+  ]) === "this is {templates} {templates} is {templates}"
 );
 console.log(
   solution("{a} {b} {c} {d} {i}", [
@@ -81,5 +81,5 @@ console.log(
     ["d", "{e}"],
     ["f", "{d}"],
     ["c", "d"],
-  ]) == "d d d {d} {i}"
+  ]) === "d d d {d} {i}"
 );
