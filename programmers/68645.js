@@ -28,12 +28,11 @@ function solution(n) {
         count += 1;
       } else break;
     }
-
     start += 1;
     max_depth -= 1;
   }
   for (i of snail) {
-    answer = answer.push([...i]);
+    answer.push(...i);
   }
 
   return answer;
@@ -41,10 +40,7 @@ function solution(n) {
 
 // console.log(solution(4) == [1, 2, 9, 3, 10, 8, 4, 5, 6, 7]);
 // console.log(solution(5) == [1, 2, 12, 3, 13, 11, 4, 14, 15, 10, 5, 6, 7, 8, 9]);
-console.log(
-  solution(6) ==
-    [1, 2, 15, 3, 16, 14, 4, 17, 21, 13, 5, 18, 19, 20, 12, 6, 7, 8, 9, 10, 11]
-);
+console.log(solution(3));
 
 //n(n+1)/2
 // 11,21,31,41,
@@ -57,3 +53,41 @@ console.log(
 //그다음 숫자가 채워져있으면 start += 1, 최대깊이 -= 1,
 //32, 42(n - start, start + 1), ==>깊이 증가
 //43 ==>최대 넓이까지 증가한다
+
+function solution(n) {
+  let graph = [];
+  let answer = [];
+  //초기값을 위해서 -1로 변수 지정
+  let y = -1;
+  let x = 0;
+  let number = 1;
+  // 요소가 모두 0인 배열 생성
+  for (let i = 1; i < n + 1; i++) {
+    let tmp = Array(i).fill(0);
+    graph.push(tmp);
+  }
+
+  for (let i = 0; i < n; i++) {
+    for (let j = i; j < n; j++) {
+      // 밑으로 내려간다.
+      if (i % 3 === 0) {
+        y += 1;
+        // 오른쪽으로 간다.
+      } else if (i % 3 === 1) {
+        x += 1;
+        //위로 올라간다.
+      } else {
+        y -= 1;
+        x -= 1;
+      }
+      graph[y][x] = number;
+      number += 1;
+    }
+  }
+  //graph[i]를 차례대로 answer에 추가
+  for (let i = 0; i < n; i++) {
+    answer = answer.concat(graph[i]);
+  }
+
+  return answer;
+}
