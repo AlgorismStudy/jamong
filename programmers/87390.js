@@ -24,3 +24,23 @@ console.log(solution(4, 7, 14) == [4, 3, 3, 3, 4, 4, 4, 4]);
 // 주어진 2차원 배열 데이터와 행, 열이 같고 true, false 값을 원소로 갖는 2차원 배열을 만들 때 아래와 같이 중첩 반복문을 사용해서 만들 수 있다.
 
 //	실패 (signal: aborted (core dumped)) => 메모리 사용량 초과
+
+function solution(n, left, right) {
+  return [true].reduce((result, _) => {
+    for (let idx = left; idx <= right; idx++) {
+      result.push(Math.max(idx % n, Math.floor(idx / n)) + 1);
+    }
+    return result;
+  }, []);
+}
+
+
+function solution(n, left, right) {
+  const ans = [];
+
+  while (left <= right) {
+    ans.push(Math.max(Math.floor(left / n), left++ % n) + 1);
+  }
+
+  return ans;
+}
