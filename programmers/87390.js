@@ -1,14 +1,12 @@
 function solution(n, left, right) {
-  //   let answer = [];
-//   let board = Array.from(new Array(n), (_, i) => Array(n).fill(i + 1));
+  let board = Array.from(new Array(n), (_, i) => Array(n).fill(i + 1));
   for (i = 0; i < n; i++) {
     for (j = 0; j < i; j++) {
       board[j][i] = i + 1;
     }
   }
-    
   const newBoard = board.flat().slice(left, right + 1);
-  console.log(newBoard);
+
   return newBoard;
 }
 
@@ -24,6 +22,5 @@ console.log(solution(4, 7, 14) == [4, 3, 3, 3, 4, 4, 4, 4]);
 // 이렇게 만들어진 1차원 배열을 return
 // 주로 BFS 나 DFS 문제를 풀면서 현재 위치를 다시 방문하지 않기 위한 2차원 배열을 만든다.
 // 주어진 2차원 배열 데이터와 행, 열이 같고 true, false 값을 원소로 갖는 2차원 배열을 만들 때 아래와 같이 중첩 반복문을 사용해서 만들 수 있다.
-
 
 //	실패 (signal: aborted (core dumped)) => 메모리 사용량 초과
